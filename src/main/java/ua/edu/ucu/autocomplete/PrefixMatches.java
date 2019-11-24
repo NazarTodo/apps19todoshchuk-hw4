@@ -55,7 +55,7 @@ public class PrefixMatches {
 
     public Iterable<String> wordsWithPrefix(String pref, int k) {
         Iterable<String> lst = trie.wordsWithPrefix(pref);
-        ArrayList<String> to_return = new ArrayList<>();
+        ArrayList<String> toReturn = new ArrayList<>();
         LinkedList<Integer> lenLst = new LinkedList<>();
         int ind = 0;
         for (String i : lst) {
@@ -66,11 +66,11 @@ public class PrefixMatches {
                 }
                 lenLst.add(i.length());
             }
-            to_return.add(i);
+            toReturn.add(i);
 
 
         }
-        return to_return;
+        return toReturn;
     }
 
     public int size() {

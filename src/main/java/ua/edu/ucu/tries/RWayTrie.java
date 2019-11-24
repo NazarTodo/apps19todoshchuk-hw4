@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class RWayTrie implements Trie {
-    private static int R = 26;
+    private static Integer R = 26;
     private static Node root;
     private int length;
 
@@ -91,23 +91,23 @@ public class RWayTrie implements Trie {
     @Override
     public Iterable<String> words() {
 //        BFS for RWayTrie
-        Queue TrieQueue = new Queue();
-        ArrayList<String> to_return = new ArrayList<>();
-        TrieQueue.enqueue(root);
-        while (!TrieQueue.isEmpty()) {
-            Node curr = (Node) TrieQueue.dequeue();
+        Queue trieQueue = new Queue();
+        ArrayList<String> toReturn = new ArrayList<>();
+        trieQueue.enqueue(root);
+        while (!trieQueue.isEmpty()) {
+            Node curr = (Node) trieQueue.dequeue();
 
             for (int i = 0; i < curr.next.length; i++) {
                 if (curr.next[i] != null) {
 
-                    TrieQueue.enqueue(curr.next[i]);
+                    trieQueue.enqueue(curr.next[i]);
                     if (curr.next[i].fullWord != null) {
-                        to_return.add(curr.next[i].fullWord);
+                        toReturn.add(curr.next[i].fullWord);
                     }
                 }
             }
         }
-        return to_return;
+        return toReturn;
     }
 
     @Override
@@ -135,7 +135,7 @@ public class RWayTrie implements Trie {
         myQueue.enqueue(temp);
         while (!myQueue.isEmpty()) {
             Node curr = (Node) myQueue.dequeue();
-            for (int i = 0; i < 26; i++) {
+            for (int i = 0; i < R; i++) {
                 if (curr.next[i] != null) {
                     myQueue.enqueue(curr.next[i]);
                     if (curr.next[i].fullWord != null) {
@@ -166,37 +166,6 @@ public class RWayTrie implements Trie {
                 next[i] = null;
             }
         }
-
-    }
-
-    public static void main(String[] args) {
-        RWayTrie A = new RWayTrie();
-        Tuple word = new Tuple("alo", 3);
-        A.add(word);
-        Tuple word2 = new Tuple("artem", 5);
-        A.add(word2);
-        Tuple word3 = new Tuple("alina", 5);
-        A.add(word3);
-        Tuple word4 = new Tuple("alisa", 5);
-        A.add(word4);
-//        System.out.println(A.contains("alo"));
-//        System.out.println(A.contains("alisa"));
-//        System.out.println(A.contains("alina"));
-//        System.out.println(A.contains("al"));
-        System.out.println(A.contains("artem"));
-
-        Iterable<String> result = A.words();
-        System.out.println(result);
-        System.out.println(A.size());
-
-        Iterable<String> result2 = A.wordsWithPrefix("al");
-        System.out.println(result2);
-
-        System.out.println(A.delete("alina"));
-        System.out.println(A.size());
-        Iterable<String> result3 = A.wordsWithPrefix("al");
-        System.out.println(result3);
-
 
     }
 
