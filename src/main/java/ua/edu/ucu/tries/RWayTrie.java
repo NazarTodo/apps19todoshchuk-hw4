@@ -30,7 +30,7 @@ public class RWayTrie implements Trie {
 
         for (int i = 0; i < len; i++) {
 
-            ind = (word.charAt(i) - 'a');
+            ind = word.charAt(i) - 'a';
 
             if (temp.next[ind] == null) {
                 temp.next[ind] = new Node();
@@ -61,7 +61,7 @@ public class RWayTrie implements Trie {
             }
             temp = temp.next[ind];
         }
-        return (temp != null && temp.isLeaf);
+        return temp != null && temp.isLeaf;
     }
 
     @Override
@@ -115,7 +115,7 @@ public class RWayTrie implements Trie {
         if (s == null || s.length() == 0) {
             throw new RuntimeException();
         }
-        ArrayList<String> to_return = new ArrayList<>();
+        ArrayList<String> toReturn = new ArrayList<>();
         Node temp = root;
         int ind;
 
@@ -125,9 +125,9 @@ public class RWayTrie implements Trie {
             temp = temp.next[ind];
         }
         if (temp == null) {
-            return to_return;
+            return toReturn;
         } else if (temp.isLeaf) {
-            to_return.add(temp.fullWord);
+            toReturn.add(temp.fullWord);
         }
 //        BFS for RWayTrie
 
@@ -139,13 +139,13 @@ public class RWayTrie implements Trie {
                 if (curr.next[i] != null) {
                     myQueue.enqueue(curr.next[i]);
                     if (curr.next[i].fullWord != null) {
-                        to_return.add(curr.next[i].fullWord);
+                        toReturn.add(curr.next[i].fullWord);
                     }
                 }
             }
         }
-        String[] res = Arrays.copyOf(to_return.toArray(),
-                to_return.size(), String[].class);
+        String[] res = Arrays.copyOf(toReturn.toArray(),
+                toReturn.size(), String[].class);
         return Arrays.asList(res);
     }
 
